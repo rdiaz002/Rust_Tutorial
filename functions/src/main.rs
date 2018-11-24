@@ -15,6 +15,11 @@ fn main() {
 
     }
 
+    for I in (1..5).rev(){
+
+      println!("The values are {}",I);
+    }
+
 
 
 }
