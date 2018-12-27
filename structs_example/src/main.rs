@@ -1,3 +1,4 @@
+#[derive(Debug)]
 struct User{
   username: String,
   email: String,
@@ -19,6 +20,31 @@ fn build_User(email: String, username: String) -> User{
 
 
 }
+
+struct Rectangle{
+  width:u32,
+  height:u32,
+}
+
+impl Rectangle{
+    fn area(&self)-> u32{ //use &self to prevent creating a copy and taking ownership. This allows us to burrow self and read it.
+      self.width * self.height
+    }
+
+    fn can_hold(&self, rec1: &Rectangle)-> bool{
+        if self.width > rec1.width && self.height > rec1.height {
+          return true;
+        }else{
+          return false;
+        }
+
+    }
+
+    fn square(size: u32) -> Rectangle { //associative function its called by using scope resolution with Rectangle class
+        Rectangle{width:size, height: size}
+    }
+}
+
 
 
 fn main() {
@@ -44,5 +70,10 @@ fn main() {
     let color1 = Colors(255,255,255);
     println! ("{}",color1.0); // tuple structs are access in the same fashion as arrays and tuples with the . and then index of element.
 
+    let rect1 = Rectangle {width: 30, height : 50};
+    let rect2 = Rectangle {width: 25, height : 49};
 
+    let rect3:Rectangle = Rectangle::square(30);
+
+    println!("{}",rect2.area());
 }
